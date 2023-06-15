@@ -39,16 +39,13 @@ public class Main {
 //         с высшим образованием (Мужчины 18-65, женщины 18-60).
 
         List<String> listOfEmployables = persons.stream()
-                .filter(age -> age.getAge() >= 18)
-                .filter(age -> age.getAge() <= 65)
-                .filter(sex -> sex.getSex() == Sex.WOMAN)
-                .filter(age -> age.getAge() <= 60)
+                .filter(person -> person.getEducation() == Education.HIGHER)
+                .filter(person -> person.getAge() >= 18)
+                .filter(person -> person.getSex() == Sex.WOMAN ? person.getAge() <= 60 : person.getAge() <= 65)
                 .sorted(Comparator.comparing(Person::getFamily))
                 .map(Person::getFamily)
                 .collect(Collectors.toList());
 
         System.out.println(listOfEmployables);
-
-
     }
 }
